@@ -1,3 +1,4 @@
+# This program asks for a string and searches the vowels in that string
 # asks user an input string, set vowel counter to 0 and initialize empty list
 word = input()
 vowel = 0
