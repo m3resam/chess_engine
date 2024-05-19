@@ -1,3 +1,4 @@
+# This program creates a list with 10 random numbers and searches the highest number in the list
 # import random module
 from random import *
 
