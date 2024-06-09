@@ -1,29 +1,20 @@
+def swap(x, y, z):
 
+    if x > y:
+        x, y, z = y, x, z
+        print(x,y,z)
 
-    
-'''
-if a > b:
-    k = a
-    a = b
-    b = k
+    if z < x:
+        x, y, z = z, y, x
+        print(x,y,z)
+        x, y, z = x, z, y
+        print(x,y,z)
 
-if c < a:
-    k = a
-    a = c
-    c = k
-    k = b
-    b = c
-    c = k
-
-elif c < b:
-    k = b
-    b = c
-    c = k
-'''
-
-def swap(x, y):
-    x, y = y, x
-    return
+    elif z < y:
+        x, y, z = x, z, y
+        print(x,y,z)
+        
+    return x, y, z
 
 def main():
     print('In this program you need to enter 3 integers a, b and c')
@@ -34,21 +25,9 @@ def main():
     print('Enter c: ')
     c = int(input())
     
-    if a > b:
-        swap(a,b)
-
-    if c < a:
-        swap(a, c)
-        swap(b, c)
-        
-    elif c < b:
-        swap(b, c)
-
-    print(a, b, c)
-
+    print(swap(a,b,c))
 
 main()
-
 
 
 
