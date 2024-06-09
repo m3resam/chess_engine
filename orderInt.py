@@ -2,17 +2,17 @@ def swap(x, y, z):
 
     if x > y:
         x, y, z = y, x, z
-        print(x,y,z)
+        #print(x,y,z)
 
     if z < x:
         x, y, z = z, y, x
-        print(x,y,z)
+        #print(x,y,z)
         x, y, z = x, z, y
-        print(x,y,z)
+        #print(x,y,z)
 
     elif z < y:
         x, y, z = x, z, y
-        print(x,y,z)
+        #print(x,y,z)
         
     return x, y, z
 
