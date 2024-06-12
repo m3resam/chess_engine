@@ -17,7 +17,7 @@ inventory_items = {'rope': 1, 'torch': 6, 'gold coin': 42, 'dagger': 1, 'arrow':
 # Calls the function dispaly_inventory taking as argument inventory_items
 display_inventory(inventory_items)
 
-print('Dragon Killed \nDragon loot: ')
+print('Dragon Killed')
 
 # This function gets both inventory_items(dictionary) and the dragin_loot(list) to add them together
 def add_to_inventory(inventory, added_items):
