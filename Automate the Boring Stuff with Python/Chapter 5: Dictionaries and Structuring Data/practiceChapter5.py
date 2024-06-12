@@ -1,5 +1,4 @@
-import pprint
-def displayInventory(inventory):
+def display_inventory(inventory):
     print('Inventory:')
     item_total = 0
     for k, v in inventory.items():
@@ -7,9 +6,9 @@ def displayInventory(inventory):
         item_total += v
     print('Total items: ', item_total)
     
-items = {'rope': 1, 'torch': 6, 'gold coin': 42, 'dagger': 1, 'arrow': 12}
+inventory_items = {'rope': 1, 'torch': 6, 'gold coin': 42, 'dagger': 1, 'arrow': 12}
 
-displayInventory(items)
+display_inventory(inventory_items)
 
 print('Dragon Killed \nDragon loot: ')
 
@@ -27,4 +26,4 @@ def add_to_inventory(inventory, added_items):
 
 dragon_loot = ['gold coin', 'dagger', 'gold coin', 'gold coin', 'ruby']
 
-add_to_inventory(items, dragon_loot)
+add_to_inventory(inventory_items, dragon_loot)
