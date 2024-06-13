@@ -1,28 +1,17 @@
-def print_table(data):
-    text = ''
-    colWidths = [0] * len(table_data)
-    x = 0
-    for i in colWidths:
-        for j in data[x]:
-            if len(j) > colWidths[x]:
-                colWidths[x] = len(j)
-        x+=1
+def print_table(tableData):
+    colWidths = [0] * len(tableData)
 
-    x = 0
-    y = 0
-    for j in data[0]:
-        for i in data:
-            print(data[x][y].rjust(colWidths[x]), end=' ')
-            x += 1
+    for line in range(len(tableData)):
+        for word in range(len(tableData[line])):
+            if colWidths[line] <= len(tableData[line][word]):
+                colWidths[line] = len(tableData[line][word])
+            else:
+                colWidths[line] = colWidths[line]
+
+    for i in range(len(tableData[0])):
+        for j in range(len(tableData)):
+            print(tableData[j][i].rjust(colWidths[j]), end=' ')
         print()
-        
-        x = 0
-        y += 1
-    
-    
-
-    
-        
 
 table_data = [['apples', 'oranges', 'cherries', 'banana'],
              ['Alice', 'Bob', 'Carol', 'David'],
