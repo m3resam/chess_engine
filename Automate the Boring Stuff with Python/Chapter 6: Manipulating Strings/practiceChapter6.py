@@ -8,9 +8,9 @@ def print_table(tableData):
             else:
                 colWidths[line] = colWidths[line]
 
-    for i in range(len(tableData[0])):
-        for j in range(len(tableData)):
-            print(tableData[j][i].rjust(colWidths[j]), end=' ')
+    for y in range(len(tableData[0])):
+        for x in range(len(tableData)):
+            print(tableData[x][y].rjust(colWidths[x]), end=' ')
         print()
 
 table_data = [['apples', 'oranges', 'cherries', 'banana'],
