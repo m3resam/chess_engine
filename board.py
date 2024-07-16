@@ -16,7 +16,19 @@ SQUARE_SIZE = WIDTH // COLS
 
 WIN = pygame.display.set_mode((WIDTH, HEIGHT))
 
-#about to add the pieces
+Wr = Piece("Wr", "pieces/Wr.png")
+Wn = Piece("Wn", "pieces/Wn.png")
+Wb = Piece("Wb", "pieces/Wb.png")
+Wq = Piece("Wq", "pieces/Wq.png")
+Wk = Piece("Wk", "pieces/Wk.png")
+Wp = Piece("Wp", "pieces/Wp.png")
+Br = Piece("Br", "pieces/Br.png")
+Bn = Piece("Bn", "pieces/Bn.png")
+Bb = Piece("Bb", "pieces/Bb.png")
+Bq = Piece("Bq", "pieces/Bq.png")
+Bk = Piece("Bk", "pieces/Bk.png")
+Bp = Piece("Bp", "pieces/Bp.png")
+
 
 board = [
     [Wr, Wn, Wb, Wq, Wk, Wb, Wn, Wr],
