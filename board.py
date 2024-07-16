@@ -8,13 +8,11 @@ class Piece:
         self.name = name
         self.image = pygame.image.load(os.path.join(image_path))
 
-
 pygame.init()
 
 WIDTH, HEIGHT = 800, 800
 ROWS, COLS = 8, 8
 SQUARE_SIZE = WIDTH // COLS
-
 
 WIN = pygame.display.set_mode((WIDTH, HEIGHT))
 
@@ -30,7 +28,6 @@ Bb = Piece("Bb", "pieces/Bb.png")
 Bq = Piece("Bq", "pieces/Bq.png")
 Bk = Piece("Bk", "pieces/Bk.png")
 Bp = Piece("Bp", "pieces/Bp.png")
-
 
 board = [
     [Br, Bn, Bb, Bq, Bk, Bb, Bn, Br],
