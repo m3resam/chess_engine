@@ -31,20 +31,23 @@ Bp = Piece("Bp", "pieces/Bp.png")
 
 
 board = [
-    [Wr, Wn, Wb, Wq, Wk, Wb, Wn, Wr],
-    [Wp, Wp, Wp, Wp, Wp, Wp, Wp, Wp],
-    [None, None, None, None, None, None, None, None],
-    [None, None, None, None, None, None, None, None],
-    [None, None, None, None, None, None, None, None],
-    [None, None, None, None, None, None, None, None],
+    [Br, Bn, Bb, Bq, Bk, Bb, Bn, Br],
     [Bp, Bp, Bp, Bp, Bp, Bp, Bp, Bp],
-    [Br, Bn, Bb, Bq, Bk, Bb, Bn, Br]
+    [None, None, None, None, None, None, None, None],
+    [None, None, None, None, None, None, None, None],
+    [None, None, None, None, None, None, None, None],
+    [None, None, None, None, None, None, None, None],
+    [Wp, Wp, Wp, Wp, Wp, Wp, Wp, Wp],
+    [Wr, Wn, Wb, Wq, Wk, Wb, Wn, Wr]
 ]
 
 def draw_board():
     for i in range(ROWS):
         for j in range(COLS):
-            pygame.draw.rect(WIN, colors[(i+j)%2], (j*SQUARE_SIZE, i*SQUARE_SIZE, SQUARE_SIZE, SQUARE_SIZE))
+            if (i+j)%2 == 0:
+                pygame.draw.rect(WIN, 'white', (j*SQUARE_SIZE, i*SQUARE_SIZE, SQUARE_SIZE, SQUARE_SIZE))
+            else:
+                pygame.draw.rect(WIN, 'black', (j*SQUARE_SIZE, i*SQUARE_SIZE, SQUARE_SIZE, SQUARE_SIZE))
             piece = board[i][j]
             if piece:
                 WIN.blit(piece.image, (j*SQUARE_SIZE, i*SQUARE_SIZE))
