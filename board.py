@@ -1,3 +1,5 @@
+#it doesnt work, i do not understand, im taking a brake
+
 import pygame
 import os
 
