@@ -16,28 +16,28 @@ SQUARE_SIZE = WIDTH // COLS
 
 WIN = pygame.display.set_mode((WIDTH, HEIGHT))
 
-Wr = Piece("Wr", "pieces/Wr.png")
-Wn = Piece("Wn", "pieces/Wn.png")
-Wb = Piece("Wb", "pieces/Wb.png")
-Wq = Piece("Wq", "pieces/Wq.png")
-Wk = Piece("Wk", "pieces/Wk.png")
-Wp = Piece("Wp", "pieces/Wp.png")
-Br = Piece("Br", "pieces/Br.png")
-Bn = Piece("Bn", "pieces/Bn.png")
-Bb = Piece("Bb", "pieces/Bb.png")
-Bq = Piece("Bq", "pieces/Bq.png")
-Bk = Piece("Bk", "pieces/Bk.png")
-Bp = Piece("Bp", "pieces/Bp.png")
+wR = Piece("wR", "pieces/wR.png")
+wN = Piece("wN", "pieces/wN.png")
+wB = Piece("wB", "pieces/wB.png")
+wQ = Piece("wQ", "pieces/wQ.png")
+wK = Piece("wK", "pieces/wK.png")
+wP = Piece("wP", "pieces/wP.png")
+bR = Piece("bR", "pieces/bR.png")
+bN = Piece("bN", "pieces/bN.png")
+bB = Piece("bB", "pieces/bB.png")
+bQ = Piece("bQ", "pieces/bQ.png")
+bK = Piece("bQ", "pieces/bK.png")
+bP = Piece("bP", "pieces/bP.png")
 
 board = [
-    [Br, Bn, Bb, Bq, Bk, Bb, Bn, Br],
-    [Bp, Bp, Bp, Bp, Bp, Bp, Bp, Bp],
+    [bR, bN, bB, bQ, bK, bB, bN, bR],
+    [bP, bP, bP, bP, bP, bP, bP, bP],
     [None, None, None, None, None, None, None, None],
     [None, None, None, None, None, None, None, None],
     [None, None, None, None, None, None, None, None],
     [None, None, None, None, None, None, None, None],
-    [Wp, Wp, Wp, Wp, Wp, Wp, Wp, Wp],
-    [Wr, Wn, Wb, Wq, Wk, Wb, Wn, Wr]
+    [wP, wP, wP, wP, wP, wP, wP, wP],
+    [wR, wN, wB, wQ, wK, wB, wN, wR]
 ]
 
 def draw_board():
