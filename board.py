@@ -46,7 +46,8 @@ HIGHLIGHT = (173, 216, 230, 100)
 def draw_board(selected_square=None, valid_moves=[]):
     for row in range(ROWS):
         for col in range(COLS):
-            color = WHITE if (row + col) % 2 == 0 else BLACK
+            if (row + col) % 2 == 0: color = WHITE
+            else: color = BLACK
             pygame.draw.rect(WIN, color, (col * SQUARE_SIZE, row * SQUARE_SIZE, SQUARE_SIZE, SQUARE_SIZE))
             piece = board[row][col]
             if piece:
