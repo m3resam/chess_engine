@@ -40,23 +40,31 @@ board = [
     [wR, wN, wB, wQ, wK, wB, wN, wR]
 ]
 
-def draw_board():
+def draw_board(selected_square = None):
     for row in range(ROWS):
         for col in range(COLS):
-            if (row + col) % 2 == 0:
-                pygame.draw.rect(WIN, 'white', (col * SQUARE_SIZE, row * SQUARE_SIZE, SQUARE_SIZE, SQUARE_SIZE))
+            #color selection
+            if selected_square == (row, col):
+                color = 'yellow'
+            elif (row + col) % 2 == 0:
+                color = 'white'
             else:
-                pygame.draw.rect(WIN, 'black', (col * SQUARE_SIZE, row * SQUARE_SIZE, SQUARE_SIZE, SQUARE_SIZE))
-            piece = board[i][j]
+                color = 'black'
+            #draw squares with colors
+            pygame.draw.rect(WIN, color, (col * SQUARE_SIZE, row * SQUARE_SIZE, SQUARE_SIZE, SQUARE_SIZE))
+            piece = board[row][col]
             if piece:
                 WIN.blit(piece.image, (col * SQUARE_SIZE, row * SQUARE_SIZE))
                 
 def move_piece(start_pos, end_pos):
     start_row, start_col = start_pos
     end_row, end_col = end_pos
+    #gets the selected piece
     piece = board[start_row][start_col]
+    #removes the piece from the start pos
     board[start_row][start_col] = None
-    board[end_row][end_col] = piece
+    #moves the piece the end pos
+    board[end_row][end_col] = piece    
     
 def main():
     clock = pygame.time.Clock()
@@ -67,16 +75,19 @@ def main():
         for event in pygame.event.get():
             if event.type == pygame.QUIT:
                 run = False
-            elif event.type == pygame.MOUSEBUTTONDOWN:
-                col, row = event.pos[0] // SQUARE_SIZE, event.pos[1] // SQUARE_SIZE
-                if selected_piece:
+            if event.type == pygame.MOUSEBUTTONDOWN:
+                col, row = event.pos[0] // SQUARE_SIZE, event.pos[1] // SQUARE_SIZE #event.po[0] = col, event.pos[1] = row
+                #already selected piece wait for move_piece
+                if selected_piece:    
+                    #selected_piece is the initial position, (row, col) is the returned end position
                     move_piece(selected_piece, (row, col))
                     selected_piece = None
+                #piece not yet selected
                 else:
                     if board[row][col] != None:
                         selected_piece = (row, col)
 
-        draw_board()
+        draw_board(selected_piece)
         pygame.display.update()
 
     pygame.quit()
