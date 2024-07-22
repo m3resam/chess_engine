@@ -76,7 +76,7 @@ def valid_move(piece, start_pos, end_pos):
                 elif end_row - start_row == 2 * direction and start_row_valid and board[start_row + direction][start_col] == None:
                     return True
         elif abs(start_col - end_col) == 1 and end_row - start_row == direction:
-            if board[end_row][end_col] != None and board[end_row][end_col][0] != piece.name[0]:
+            if board[end_row][end_col] != None and board[end_row][end_col].name[0] != piece.name[0]:
                 return True
             
     elif piece.name[1] == 'R': #rook
