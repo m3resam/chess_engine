@@ -81,7 +81,7 @@ def valid_move(piece, start_pos, end_pos):
             
     elif piece.name[1] == 'R': #rook
         if start_row == end_row or start_col == end_col:
-            if not blocking_piece(start_pos, end_pos):
+            if not piece_in_between(start_pos, end_pos):
                 return True
             
     elif piece.name[1] == 'N': #knight
@@ -95,7 +95,7 @@ def valid_move(piece, start_pos, end_pos):
         
     return False
 
-def blocking_piece(start_pos, end_pos):
+def piece_in_between(start_pos, end_pos):
     start_row, start_col = start_pos
     end_row, end_col = end_pos
     
