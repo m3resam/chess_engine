@@ -50,15 +50,31 @@ def draw_board():
             piece = board[i][j]
             if piece:
                 WIN.blit(piece.image, (j*SQUARE_SIZE, i*SQUARE_SIZE))
-
+                
+def move_piece(start_pos, end_pos):
+    start_row, start_col = start_pos
+    end_row, end_col = end_pos
+    piece = board[start_row][start_col]
+    board[start_row][start_col] = None
+    board[end_row][end_col] = piece
+    
 def main():
     clock = pygame.time.Clock()
+    selected_piece = None
     run = True
     while run:
         clock.tick(60)  
         for event in pygame.event.get():
             if event.type == pygame.QUIT:
                 run = False
+            elif event.type == pygame.MOUSEBUTTONDOWN:
+                col, row = event.pos[0] // SQUARE_SIZE, event.pos[1] // SQUARE_SIZE
+                if selected_piece:
+                    move_piece(selected_piece, (row, col))
+                    selected_piece = None
+                else:
+                    if board[row][col] != None:
+                        selected_piece = (row, col)
 
         draw_board()
         pygame.display.update()
