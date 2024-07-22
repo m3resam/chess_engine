@@ -40,38 +40,93 @@ board = [
     [wR, wN, wB, wQ, wK, wB, wN, wR]
 ]
 
-YELLOW = (255, 238, 110, 1)
-DARK = (129, 142, 112)
-LIGHT = (189, 196, 180)
+WHITE = (255, 255, 255)
+BLACK = (0, 0, 0)
+GREEN = (0, 255, 0)
+HIGHLIGHT = (173, 216, 230)
+
 def draw_board(selected_square = None):
     for row in range(ROWS):
         for col in range(COLS):
-            #color selection
             if selected_square == (row, col):
-                color = YELLOW
+                color = HIGHLIGHT
             elif (row + col) % 2 == 0:
-                color = LIGHT
+                color = WHITE
             else:
-                color = DARK
-            #draw squares with colors
+                color = BLACK
             pygame.draw.rect(WIN, color, (col * SQUARE_SIZE, row * SQUARE_SIZE, SQUARE_SIZE, SQUARE_SIZE))
             piece = board[row][col]
             if piece:
                 WIN.blit(piece.image, (col * SQUARE_SIZE, row * SQUARE_SIZE))
-                
+
+def valid_move(piece, start_pos, end_pos):
+    start_row, start_col = start_pos
+    end_row, end_col = end_pos
+
+    if piece.name[1] == 'P': #pawn
+        if piece.name[0] == 'w':
+            direction = -1
+        else:
+            direction = 1
+        start_row_valid = (start_row == 6 and piece.name[0] == 'w') or (start_row == 1 and piece.name[0] == 'b')
+        if start_col == end_col: 
+            if board[end_row][end_col] == None:
+                if end_row - start_row == direction:
+                    return True
+                elif end_row - start_row == 2 * direction and start_row_valid and board[start_row + direction][start_col] == None:
+                    return True
+        elif abs(start_col - end_col) == 1 and end_row - start_row == direction:
+            if board[end_row][end_col] != None and board[end_row][end_col][0] != piece.name[0]:
+                return True
+            
+    elif piece.name[1] == 'R': #rook
+        if start_row == end_row or start_col == end_col:
+            if not blocking_piece(start_pos, end_pos):
+                return True
+            
+    elif piece.name[1] == 'N': #knight
+        pass
+    elif piece.name[1] == 'B': #bishop
+        pass
+    elif piece.name[1] == 'Q': #queen
+        pass
+    elif piece.name[1] == 'K': #king
+        pass
+        
+    return False
+
+def blocking_piece(start_pos, end_pos):
+    start_row, start_col = start_pos
+    end_row, end_col = end_pos
+    
+    if end_row > start_row: row_step = 1
+    elif end_row < start_row: row_step = -1
+    else: row_step = 0
+
+    if end_col > start_col: col_step = 1
+    elif end_col < start_col: col_step = -1
+    else: col_step = 0
+
+    current_row, current_col = start_row + row_step, start_col + col_step
+    while (current_row, current_col) != (end_row, end_col):
+        if board[current_row][current_col] is not None:
+            return True
+        current_row += row_step
+        current_col += col_step
+
+    return False
+
 def move_piece(start_pos, end_pos):
     start_row, start_col = start_pos
     end_row, end_col = end_pos
-    #gets the selected piece
     piece = board[start_row][start_col]
-    #removes the piece from the start pos
     board[start_row][start_col] = None
-    #moves the piece the end pos
-    board[end_row][end_col] = piece    
-    
+    board[end_row][end_col] = piece
+
 def main():
     clock = pygame.time.Clock()
     selected_piece = None
+    turn = 'w'
     run = True
     while run:
         clock.tick(60)  
@@ -79,17 +134,16 @@ def main():
             if event.type == pygame.QUIT:
                 run = False
             if event.type == pygame.MOUSEBUTTONDOWN:
-                col, row = event.pos[0] // SQUARE_SIZE, event.pos[1] // SQUARE_SIZE #event.po[0] = col, event.pos[1] = row
-                #already selected piece wait for move_piece
-                if selected_piece:    
-                    #selected_piece is the initial position, (row, col) is the returned end position
-                    move_piece(selected_piece, (row, col))
+                col, row = event.pos[0] // SQUARE_SIZE, event.pos[1] // SQUARE_SIZE
+                if selected_piece: 
+                    if valid_move(board[selected_piece[0]][selected_piece[1]], selected_piece, (row, col)):
+                        move_piece(selected_piece, (row, col))
+                        turn = 'b' if turn == 'w' else 'w'
                     selected_piece = None
-                #piece not yet selected
                 else:
                     if board[row][col] != None:
                         selected_piece = (row, col)
-
+            
         draw_board(selected_piece)
         pygame.display.update()
 
