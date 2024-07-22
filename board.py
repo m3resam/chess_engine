@@ -44,7 +44,7 @@ def draw_board(selected_square = None):
     for row in range(ROWS):
         for col in range(COLS):
             #color selection
-            if selected_square == (row, col):
+            if selected_square == (row, col): #highlights the selected square
                 color = 'yellow'
             elif (row + col) % 2 == 0:
                 color = 'white'
