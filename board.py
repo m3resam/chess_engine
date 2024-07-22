@@ -14,7 +14,6 @@ SQUARE_SIZE = WIDTH // COLS
 
 WIN = pygame.display.set_mode((WIDTH, HEIGHT))
 
-# Initialize pieces
 wR = Piece("wR", "pieces/wR.png")
 wN = Piece("wN", "pieces/wN.png")
 wB = Piece("wB", "pieces/wB.png")
@@ -41,8 +40,8 @@ board = [
 
 WHITE = (255, 255, 255)
 BLACK = (0, 0, 0)
-VALID_MOVE = (0, 255, 0, 100)  # RGBA
-HIGHLIGHT = (173, 216, 230, 100)  # RGBA
+VALID_MOVE = (0, 255, 0, 100)
+HIGHLIGHT = (173, 216, 230, 100)
 
 def draw_board(selected_square=None, valid_moves=[]):
     for row in range(ROWS):
