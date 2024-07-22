@@ -41,15 +41,15 @@ board = [
 ]
 
 def draw_board():
-    for i in range(ROWS):
-        for j in range(COLS):
-            if (i+j)%2 == 0:
-                pygame.draw.rect(WIN, 'white', (j*SQUARE_SIZE, i*SQUARE_SIZE, SQUARE_SIZE, SQUARE_SIZE))
+    for row in range(ROWS):
+        for col in range(COLS):
+            if (row + col) % 2 == 0:
+                pygame.draw.rect(WIN, 'white', (col * SQUARE_SIZE, row * SQUARE_SIZE, SQUARE_SIZE, SQUARE_SIZE))
             else:
-                pygame.draw.rect(WIN, 'black', (j*SQUARE_SIZE, i*SQUARE_SIZE, SQUARE_SIZE, SQUARE_SIZE))
+                pygame.draw.rect(WIN, 'black', (col * SQUARE_SIZE, row * SQUARE_SIZE, SQUARE_SIZE, SQUARE_SIZE))
             piece = board[i][j]
             if piece:
-                WIN.blit(piece.image, (j*SQUARE_SIZE, i*SQUARE_SIZE))
+                WIN.blit(piece.image, (col * SQUARE_SIZE, row * SQUARE_SIZE))
                 
 def move_piece(start_pos, end_pos):
     start_row, start_col = start_pos
