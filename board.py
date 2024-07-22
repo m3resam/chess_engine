@@ -40,16 +40,19 @@ board = [
     [wR, wN, wB, wQ, wK, wB, wN, wR]
 ]
 
+YELLOW = (255, 238, 110, 1)
+DARK = (129, 142, 112)
+LIGHT = (189, 196, 180)
 def draw_board(selected_square = None):
     for row in range(ROWS):
         for col in range(COLS):
             #color selection
-            if selected_square == (row, col): #highlights the selected square
-                color = 'yellow'
+            if selected_square == (row, col):
+                color = YELLOW
             elif (row + col) % 2 == 0:
-                color = 'white'
+                color = LIGHT
             else:
-                color = 'black'
+                color = DARK
             #draw squares with colors
             pygame.draw.rect(WIN, color, (col * SQUARE_SIZE, row * SQUARE_SIZE, SQUARE_SIZE, SQUARE_SIZE))
             piece = board[row][col]
